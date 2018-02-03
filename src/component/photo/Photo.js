@@ -14,7 +14,7 @@ class Photo extends PureComponent {
             <div className="photo">
                 <div
                     className="image"
-                    style={getStyle()}
+                    style={getStyle(this.props.photo)}
                 />
                 <div className="prop">
                     <span className="label">Author: </span>
@@ -35,8 +35,8 @@ class Photo extends PureComponent {
 
 export default Photo;
 
-function getStyle() {
+function getStyle(photo) {
     return {
-        backgroundImage: 'url(https://gardenature.co.uk/portal/web/195/content/images/Birds/Kingfisher.jpg)'
+        backgroundImage: `url(${photo.url})`
     }
 }
