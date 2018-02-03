@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PhotoIndex from './photo/index';
+import PhotoIndex from './photo/Index';
 
 const Index = () => {
     return (

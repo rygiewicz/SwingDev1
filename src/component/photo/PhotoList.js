@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Immutable from 'immutable';
 
-import Photo from './photo';
+import Photo from './Photo';
 
-import PhotoRecord from '../../domain/photo/photo';
+import PhotoRecord from '../../domain/photo/Photo';
 
 class PhotoList extends Component {
 

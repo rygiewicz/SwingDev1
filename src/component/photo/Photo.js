@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-import PhotoRecord from '../../domain/photo/photo';
+import PhotoRecord from '../../domain/photo/Photo';
 
 class Photo extends PureComponent {
 

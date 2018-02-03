@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PhotoList from './photo-list';
+import PhotoList from './PhotoList';
 
 const PhotoIndex = () => {
     return (
