@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import Photo from './photo';
+
 class PhotoList extends Component {
 
     constructor(props) {
@@ -23,7 +25,10 @@ class PhotoList extends Component {
     renderPhotos() {
         return this.state.photos.map((photo, index) => {
             return (
-                <div key={index}>{photo}</div>
+                <Photo
+                    key={index}
+                    photo={photo}
+                />
             );
         });
     }
