@@ -9,7 +9,6 @@ const API_KEY = '37ae86d629a2e4a62917253419cb9e94'; // this should not be public
 
 const PhotoActions = {
     getPhotos() {
-        dispatch(PhotoActionTypes.PHOTOS_LOADING);
         fetchPhotos().then(this.photosReceived).catch(error => {
             //TODO: fire error action
             Logger.error(error);

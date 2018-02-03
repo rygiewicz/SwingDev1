@@ -4,8 +4,7 @@ import Immutable from 'immutable';
 import PhotoActionTypes from './PhotoActionTypes';
 
 const PhotosState = Immutable.Record({
-    photos: Immutable.List(),
-    loading: false
+    photos: Immutable.List()
 });
 
 class PhotoStore extends ReduceStore {
@@ -19,11 +18,9 @@ class PhotoStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
-            case PhotoActionTypes.PHOTOS_LOADING:
-                return state.set('loading', true);
 
             case PhotoActionTypes.PHOTOS_RECEIVED:
-                return state.set('loading', false).update('photos', photos => photos.concat(action.photos));
+                return state.update('photos', photos => photos.concat(action.photos));
 
             case PhotoActionTypes.PHOTO_INFO_RECEIVED:
                 return state.update('photos', photos => photos.map(photo => {
