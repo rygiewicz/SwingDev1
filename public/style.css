@@ -38,3 +38,12 @@
     background-size: contain;
     margin-bottom: 10px;
 }
+
+.photo .prop{
+    line-height: 1.5;
+}
+
+.photo .error{
+    color: #ff6666;
+    font-style: italic;
+}

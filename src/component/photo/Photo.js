@@ -28,6 +28,19 @@ class Photo extends PureComponent {
                     <span className="label">Description: </span>
                     <span className="value">{this.props.photo.description}</span>
                 </div>
+                {this.renderErrorIcon()}
+            </div>
+        );
+    }
+
+    renderErrorIcon(){
+        if(!this.props.photo.error){
+            return null;
+        }
+
+        return (
+            <div className="prop">
+                <span className="error">*Some information may be missing.</span>
             </div>
         );
     }
