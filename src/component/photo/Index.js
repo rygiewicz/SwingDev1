@@ -4,6 +4,7 @@ import {Container} from 'flux/utils';
 import PhotoList from './PhotoList';
 
 import PhotoStore from "../../data/photo/PhotoStore";
+import PhotoActions from '../../data/photo/PhotoActions';
 
 class PhotoIndex extends Component {
     static getStores() {
@@ -16,6 +17,10 @@ class PhotoIndex extends Component {
         return {
             photos: PhotoStore.getState(),
         };
+    }
+
+    componentDidMount() {
+        PhotoActions.getPhotos();
     }
 
     render() {

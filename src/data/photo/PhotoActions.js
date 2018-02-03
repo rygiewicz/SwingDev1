@@ -8,3 +8,5 @@ const PhotoActions = {
         });
     }
 };
+
+export default PhotoActions;
