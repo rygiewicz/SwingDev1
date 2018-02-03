@@ -1,10 +1,11 @@
 import Immutable from 'immutable';
 
 const PhotoRecord = Immutable.Record({
-    author: '?',
-    date: new Date(0),
-    description: '?',
-    url: '',
+    id: null,
+    author: null,
+    date: null,
+    description: null,
+    url: null,
     error: true
 });
 

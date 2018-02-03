@@ -18,29 +18,30 @@ class Photo extends PureComponent {
                 />
                 <div className="prop">
                     <span className="label">Author: </span>
-                    <span className="value">{this.props.photo.author}</span>
+                    <span className="value">{fallback(this.props.photo.author)}</span>
                 </div>
                 <div className="prop">
                     <span className="label">Date: </span>
-                    <span className="value">{this.props.photo.date.toDateString()}</span>
+                    <span className="value">{fallback(this.props.photo.date && this.props.photo.date.toDateString())}
+                    </span>
                 </div>
                 <div className="prop">
                     <span className="label">Description: </span>
-                    <span className="value">{this.props.photo.description}</span>
+                    <span className="value">{fallback(this.props.photo.description)}</span>
                 </div>
                 {this.renderErrorIcon()}
             </div>
         );
     }
 
-    renderErrorIcon(){
-        if(!this.props.photo.error){
+    renderErrorIcon() {
+        if (!this.props.photo.error) {
             return null;
         }
 
         return (
             <div className="prop">
-                <span className="error">*Some information may be missing.</span>
+                <span className="error">*Some information may be missing due to an error.</span>
             </div>
         );
     }
@@ -52,4 +53,8 @@ function getStyle(photo) {
     return {
         backgroundImage: `url(${photo.url})`
     }
+}
+
+function fallback(input) {
+    return input || '-';
 }
