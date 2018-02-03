@@ -34,6 +34,7 @@
 .photo .image{
     width: 100%;
     height: 300px;
-    background-repeat: no-repeat;
+    background: no-repeat center;
     background-size: contain;
+    margin-bottom: 10px;
 }
