@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
+import Immutable from 'immutable';
 
 import Photo from './photo';
+
+import PhotoRecord from '../../domain/photo/photo';
 
 class PhotoList extends Component {
 
@@ -8,11 +11,11 @@ class PhotoList extends Component {
         super(props);
 
         this.state = {
-            photos: [
-                'photo1',
-                'photo2',
-                'photo3'
-            ]
+            photos: Immutable.List([
+                new PhotoRecord({author: 'photo1'}),
+                new PhotoRecord({author: 'photo2'}),
+                new PhotoRecord({author: 'photo3'})
+            ])
         };
     }
 
