@@ -47,9 +47,5 @@ PhotoList.propTypes = {
 export default PhotoList;
 
 function loadFunc(page) {
-    if (page !== 1) {
-        return;
-    }
-
-    PhotoActions.getPhotos();
+    PhotoActions.getPhotos(page);
 }

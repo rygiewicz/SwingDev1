@@ -8,9 +8,9 @@ import Logger from '../../helper/Logger';
 const API_KEY = '37ae86d629a2e4a62917253419cb9e94'; // this should not be public in real-world applications
 
 const PhotoActions = {
-    getPhotos() {
-        fetchPhotos().then(this.photosReceived).catch(error => {
-            //TODO: fire error action
+    getPhotos(page) {
+        fetchPhotos(page).then(this.photosReceived).catch(error => {
+            //TODO: fire error action or maybe try again?
             Logger.error(error);
         });
     },
@@ -30,9 +30,9 @@ function dispatch(type, data) {
     });
 }
 
-function fetchPhotos() {
+function fetchPhotos(page) {
     const searchUrl = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&text=dogs`
-        + `&format=json&nojsoncallback=1&per_page=100`;
+        + `&format=json&nojsoncallback=1&per_page=100&page=${page}`;
 
     return axios.get(searchUrl).then(response => {
         return response.data.photos.photo.reduce((list, photo) => {
