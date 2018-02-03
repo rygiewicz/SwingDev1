@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+#photo-list {
+    padding: 10px;
+}
+
+.photo {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    border: 1px solid gray;
+    box-shadow: 4px 4px 8px 0 gray;
+    margin: 1%;
+    float: left;
+    width: 23%;
+    padding: 10px;
+}
