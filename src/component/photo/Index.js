@@ -4,13 +4,13 @@ import Immutable from "immutable";
 
 import PhotoList from './PhotoList';
 
-const PhotoIndex = () => {
+function PhotoIndex() {
     return (
         <div id="photo-index">
             <PhotoList photos={mockPhotos()}/>
         </div>
     );
-};
+}
 
 export default PhotoIndex;
 
