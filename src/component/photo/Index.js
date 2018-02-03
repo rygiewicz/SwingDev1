@@ -26,7 +26,10 @@ class PhotoIndex extends Component {
     render() {
         return (
             <div id="photo-index">
-                <PhotoList photos={this.state.photos}/>
+                <PhotoList
+                    photos={this.state.photos.photos}
+                    loading={this.state.photos.loading}
+                />
             </div>
         );
     }
