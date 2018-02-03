@@ -1,25 +1,28 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Immutable from "immutable";
 
 import Photo from './Photo';
 
-class PhotoList extends Component {
-
-    render() {
-        return (
-            <div id="photo-list">{this.renderPhotos()}</div>
-        );
-    }
-
-    renderPhotos() {
-        return this.props.photos.map((photo, index) => {
-            return (
-                <Photo
-                    key={index}
-                    photo={photo}
-                />
-            );
-        });
-    }
+function PhotoList(props) {
+    return (
+        <div id="photo-list">
+            {
+                props.photos.map((photo, index) =>
+                    (
+                        <Photo
+                            key={index}
+                            photo={photo}
+                        />
+                    )
+                )
+            }
+        </div>
+    );
 }
+
+PhotoList.propTypes = {
+    photos: PropTypes.instanceOf(Immutable.List)
+};
 
 export default PhotoList;
