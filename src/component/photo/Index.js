@@ -1,18 +1,23 @@
 import React from 'react';
 import PhotoRecord from "../../domain/photo/Photo";
 import Immutable from "immutable";
+import {Container} from 'flux/utils';
 
 import PhotoList from './PhotoList';
 
-function PhotoIndex() {
-    return (
-        <div id="photo-index">
-            <PhotoList photos={mockPhotos()}/>
-        </div>
-    );
+import PhotoStore from "../../data/photo/PhotoStore";
+
+function getStores() {
+    return [
+        PhotoStore,
+    ];
 }
 
-export default PhotoIndex;
+function getState() {
+    return {
+        photos: mockPhotos(),
+    };
+}
 
 function mockPhotos() {
     return Immutable.List([
@@ -33,3 +38,5 @@ function mockPhotos() {
         })
     ]);
 }
+
+export default Container.createFunctional(PhotoList, getStores, getState);
