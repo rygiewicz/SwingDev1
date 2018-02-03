@@ -1,12 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Index extends Component {
+const PhotoIndex = () => {
+    return (
+        <div id="photo-index">PhotoIndex</div>
+    );
+};
 
-    render() {
-        return (
-            <div id="photo-index">PhotoIndex</div>
-        );
-    }
-}
-
-export default Index;
+export default PhotoIndex;
