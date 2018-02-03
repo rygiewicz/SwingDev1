@@ -4,6 +4,7 @@ import Immutable from "immutable";
 import InfiniteScroll from 'react-infinite-scroller';
 
 import Photo from './Photo';
+import PhotoActions from "../../data/photo/PhotoActions";
 
 function PhotoList(props) {
     return (
@@ -11,7 +12,7 @@ function PhotoList(props) {
             pageStart={0}
             loadMore={loadFunc}
             hasMore={true}
-            loader={<div className="loader"/>}
+            loader={<div className="loader" key={0}/>}
         >
             <PhotoListPhotos {...props}/>
         </InfiniteScroll>
@@ -53,6 +54,10 @@ function getClassName(props) {
     return null;
 }
 
-function loadFunc() {
-    //
+function loadFunc(page) {
+    if (page !== 1) {
+        return;
+    }
+
+    PhotoActions.getPhotos();
 }
