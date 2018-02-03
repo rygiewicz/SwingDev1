@@ -11,7 +11,11 @@ class Photo extends PureComponent {
 
     render() {
         return (
-            <div>{this.props.photo.author}</div>
+            <div className="photo">
+                <span className="prop author">{this.props.photo.author}</span>
+                <span className="prop date">{this.props.photo.date.toDateString()}</span>
+                <span className="prop description">{this.props.photo.description}</span>
+            </div>
         );
     }
 }
