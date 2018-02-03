@@ -1,19 +1,8 @@
 import React, {Component} from 'react';
-import Immutable from 'immutable';
 
 import Photo from './Photo';
 
-import PhotoRecord from '../../domain/photo/Photo';
-
 class PhotoList extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            photos: mockPhotos()
-        };
-    }
 
     render() {
         return (
@@ -22,7 +11,7 @@ class PhotoList extends Component {
     }
 
     renderPhotos() {
-        return this.state.photos.map((photo, index) => {
+        return this.props.photos.map((photo, index) => {
             return (
                 <Photo
                     key={index}
@@ -34,23 +23,3 @@ class PhotoList extends Component {
 }
 
 export default PhotoList;
-
-function mockPhotos() {
-    return Immutable.List([
-        new PhotoRecord({
-            author: 'photo1',
-            date: new Date('2001-12-10'),
-            description: 'photo1 description'
-        }),
-        new PhotoRecord({
-            author: 'photo2',
-            date: new Date('2008-05-17'),
-            description: 'photo2 description'
-        }),
-        new PhotoRecord({
-            author: 'photo3',
-            date: new Date('1997-02-23'),
-            description: 'photo3 description'
-        })
-    ]);
-}
