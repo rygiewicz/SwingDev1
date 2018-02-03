@@ -7,8 +7,8 @@
   "license": "not sure",
   "main": "bundle.js",
   "scripts": {
-    "build": "webpack ./src/root.js ./bundle.js",
-    "watch": "webpack ./src/root.js ./bundle.js --watch",
+    "build": "webpack ./src/root.js ./build/bundle.js",
+    "watch": "webpack ./src/root.js ./build/bundle.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

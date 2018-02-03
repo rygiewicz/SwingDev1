@@ -22,5 +22,3 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
-bundle.js
-
