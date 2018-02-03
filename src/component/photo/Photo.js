@@ -17,17 +17,13 @@ class Photo extends PureComponent {
                     style={getStyle(this.props.photo)}
                 />
                 <div className="prop">
-                    <span className="label">Author: </span>
-                    <span className="value">{fallback(this.props.photo.author)}</span>
+                    <span>Author: {fallback(this.props.photo.author)}</span>
                 </div>
                 <div className="prop">
-                    <span className="label">Date: </span>
-                    <span className="value">{fallback(this.props.photo.date && this.props.photo.date.toDateString())}
-                    </span>
+                    <span>Date: {fallback(this.props.photo.date && this.props.photo.date.toDateString())}</span>
                 </div>
                 <div className="prop">
-                    <span className="label">Description: </span>
-                    <span className="value">{fallback(this.props.photo.description)}</span>
+                    <span>Description: {fallback(this.props.photo.description)}</span>
                 </div>
                 {this.renderErrorIcon()}
             </div>

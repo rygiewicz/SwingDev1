@@ -40,7 +40,9 @@
 }
 
 .photo .prop{
-    line-height: 1.5;
+    line-height: 1.5em;
+    max-height: 4.5em;
+    overflow: hidden;
 }
 
 .photo .error{
