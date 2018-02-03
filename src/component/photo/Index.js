@@ -23,6 +23,7 @@ class PhotoIndex extends Component {
             <div id="photo-index">
                 <PhotoList
                     photos={this.state.photos.photos}
+                    hasMore={this.state.photos.hasMore}
                 />
             </div>
         );

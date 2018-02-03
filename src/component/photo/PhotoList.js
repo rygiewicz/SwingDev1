@@ -11,7 +11,7 @@ function PhotoList(props) {
         <InfiniteScroll
             pageStart={0}
             loadMore={loadFunc}
-            hasMore={true}
+            hasMore={props.hasMore}
             loader={<div className="loader" key={0}/>}
         >
             <PhotoListPhotos {...props}/>
@@ -41,7 +41,8 @@ function PhotoListPhotos(props) {
 }
 
 PhotoList.propTypes = {
-    photos: PropTypes.instanceOf(Immutable.List)
+    photos: PropTypes.instanceOf(Immutable.List),
+    hasMore: PropTypes.bool.isRequired
 };
 
 export default PhotoList;
