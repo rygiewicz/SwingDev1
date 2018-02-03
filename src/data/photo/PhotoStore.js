@@ -33,7 +33,7 @@ class PhotoStore extends ReduceStore {
 
     reduce(state, action) {
         switch (action.type) {
-            case PhotoActionTypes.GET_PHOTOS:
+            case PhotoActionTypes.PHOTOS_RECEIVED:
                 return photos;
             default:
                 return state;

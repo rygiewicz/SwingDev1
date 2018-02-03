@@ -1,5 +1,6 @@
 const ActionTypes = {
-    GET_PHOTOS: Symbol()
+    PHOTOS_RECEIVED: Symbol(),
+    PHOTOS_LOADING: Symbol()
 };
 
 export default ActionTypes;
