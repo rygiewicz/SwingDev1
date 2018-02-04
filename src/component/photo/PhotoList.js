@@ -25,7 +25,7 @@ function PhotoListPhotos(props) {
     }
 
     return (
-        <div id="photo-list">
+        <div id="photo-list" className={getClassName(props)}>
             {
                 props.photos.map((photo, index) =>
                     (
@@ -46,6 +46,14 @@ PhotoList.propTypes = {
 };
 
 export default PhotoList;
+
+function getClassName(props) {
+    if (props.loading) {
+        return 'busy';
+    }
+
+    return null;
+}
 
 function loadFunc(page) {
     PhotoActions.getPhotos(page);
