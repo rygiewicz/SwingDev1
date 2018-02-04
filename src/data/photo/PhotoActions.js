@@ -4,6 +4,7 @@ import PhotoRecord from "../../domain/photo/Photo";
 import Immutable from "immutable";
 import axios from 'axios';
 import Logger from '../../helper/Logger';
+import Constants from '../../helper/Constants';
 
 const API_KEY = '073d3c12fa32c5e8bfd08e7850900e15'; // this should not be public in real-world applications
 
@@ -48,7 +49,7 @@ function dispatch(type, data) {
 
 function fetchPhotos(page) {
     const searchUrl = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${API_KEY}&text=dogs`
-        + `&format=json&nojsoncallback=1&per_page=100&page=${page}`;
+        + `&format=json&nojsoncallback=1&per_page=${Constants.PHOTOS_PER_PAGE}&page=${page}`;
 
     return axios.get(searchUrl).then(response => {
         if (response.data.stat !== 'ok') {

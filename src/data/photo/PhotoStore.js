@@ -2,6 +2,7 @@ import {ReduceStore} from 'flux/utils';
 import PhotoDispatcher from './PhotoDispatcher'
 import Immutable from 'immutable';
 import PhotoActionTypes from './PhotoActionTypes';
+import Constants from '../../helper/Constants';
 
 const PhotosState = Immutable.Record({
     photos: Immutable.List(),
@@ -30,7 +31,7 @@ class PhotoStore extends ReduceStore {
 
             case PhotoActionTypes.PHOTOS_RECEIVED:
                 return state.set('loading', false).update('photos', photos => photos.concat(action.photos))
-                    .set('hasMore', action.photos.count() === 100);
+                    .set('hasMore', action.photos.count() === Constants.PHOTOS_PER_PAGE);
 
             default:
                 return state;
