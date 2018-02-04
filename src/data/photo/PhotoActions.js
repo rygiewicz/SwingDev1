@@ -5,7 +5,7 @@ import Immutable from "immutable";
 import axios from 'axios';
 import Logger from '../../helper/Logger';
 
-const API_KEY = '37ae86d629a2e4a62917253419cb9e94'; // this should not be public in real-world applications
+const API_KEY = '073d3c12fa32c5e8bfd08e7850900e15'; // this should not be public in real-world applications
 
 let failedPage = null;
 
