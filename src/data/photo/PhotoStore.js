@@ -32,16 +32,6 @@ class PhotoStore extends ReduceStore {
                 return state.set('loading', false).update('photos', photos => photos.concat(action.photos))
                     .set('hasMore', action.photos.count() === 100);
 
-            case PhotoActionTypes.PHOTO_INFO_RECEIVED:
-                return state.update('photos', photos => photos.map(photo => {
-                    if (action.info.id !== photo.id) {
-                        return photo;
-                    }
-
-                    return photo.set('author', action.info.author).set('date', action.info.date)
-                        .set('description', action.info.description);
-                }));
-
             default:
                 return state;
         }
