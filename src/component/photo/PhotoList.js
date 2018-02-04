@@ -12,9 +12,9 @@ function PhotoList(props) {
             pageStart={0}
             loadMore={loadFunc}
             hasMore={props.hasMore}
-            loader={<div className="loader" key={0}/>}
         >
             <PhotoListPhotos {...props}/>
+            <PhotoListLoader {...props}/>
         </InfiniteScroll>
     );
 }
@@ -40,9 +40,18 @@ function PhotoListPhotos(props) {
     );
 }
 
+function PhotoListLoader(props) {
+    if (!props.loading) {
+        return null;
+    }
+
+    return (<div className="loader"/>)
+}
+
 PhotoList.propTypes = {
     photos: PropTypes.instanceOf(Immutable.List),
-    hasMore: PropTypes.bool.isRequired
+    hasMore: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired
 };
 
 export default PhotoList;
