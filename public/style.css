@@ -9,6 +9,10 @@
     background: url('blue_bar.gif') repeat;
 }
 
+.photo-load-error{
+    text-align: center;
+}
+
 #photo-list {
     padding: 10px;
     position: relative;

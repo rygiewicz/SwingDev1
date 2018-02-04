@@ -6,7 +6,8 @@ import PhotoActionTypes from './PhotoActionTypes';
 const PhotosState = Immutable.Record({
     photos: Immutable.List(),
     hasMore: true,
-    loading: false
+    loading: false,
+    error: false
 });
 
 class PhotoStore extends ReduceStore {
@@ -21,8 +22,11 @@ class PhotoStore extends ReduceStore {
     reduce(state, action) {
         switch (action.type) {
 
-            case PhotoActionTypes.PHOTOS_LOADING:
-                return state.set('hasMore', false).set('loading', true);
+            case PhotoActionTypes.LOADING_STARTED:
+                return state.set('hasMore', false).set('error', false).set('loading', true);
+
+            case PhotoActionTypes.LOADING_ERROR:
+                return state.set('error', true).set('loading', false);
 
             case PhotoActionTypes.PHOTOS_RECEIVED:
                 return state.set('loading', false).update('photos', photos => photos.concat(action.photos))

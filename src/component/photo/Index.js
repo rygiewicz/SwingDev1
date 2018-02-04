@@ -25,6 +25,7 @@ class PhotoIndex extends Component {
                     photos={this.state.photos.photos}
                     hasMore={this.state.photos.hasMore}
                     loading={this.state.photos.loading}
+                    error={this.state.photos.error}
                 />
             </div>
         );

@@ -7,18 +7,31 @@ import Logger from '../../helper/Logger';
 
 const API_KEY = '37ae86d629a2e4a62917253419cb9e94'; // this should not be public in real-world applications
 
+let failedPage = null;
+
 const PhotoActions = {
     getPhotos(page) {
-        dispatch(PhotoActionTypes.PHOTOS_LOADING);
+        failedPage = null;
+        dispatch(PhotoActionTypes.LOADING_STARTED);
         fetchPhotos(page).then(this.photosReceived).catch(error => {
-            //TODO: fire error action or maybe try again?
+            failedPage = page;
+            dispatch(PhotoActionTypes.LOADING_ERROR);
             Logger.error(error);
         });
     },
 
     photosReceived(photos) {
+        failedPage = null;
         dispatch(PhotoActionTypes.PHOTOS_RECEIVED, {photos});
         updatePhotoInfo(photos);
+    },
+
+    tryAgain() {
+        if (!failedPage) {
+            return;
+        }
+
+        this.getPhotos(failedPage);
     }
 };
 
@@ -36,6 +49,10 @@ function fetchPhotos(page) {
         + `&format=json&nojsoncallback=1&per_page=100&page=${page}`;
 
     return axios.get(searchUrl).then(response => {
+        if (response.data.stat !== 'ok') {
+            throw new Error(response.data.message || 'response stat was not ok');
+        }
+
         return response.data.photos.photo.reduce((list, photo) => {
             return list.push(newPhoto(photo));
         }, Immutable.List());

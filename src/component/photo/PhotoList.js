@@ -15,6 +15,7 @@ function PhotoList(props) {
         >
             <PhotoListPhotos {...props}/>
             <PhotoListLoader {...props}/>
+            <PhotoListError {...props}/>
         </InfiniteScroll>
     );
 }
@@ -48,10 +49,24 @@ function PhotoListLoader(props) {
     return (<div className="loader"/>)
 }
 
+function PhotoListError(props) {
+    if (!props.error) {
+        return null;
+    }
+
+    return (
+        <div className="photo-load-error">
+            There was a problem loading the photos.
+            <button onClick={tryAgain}>try again</button>
+        </div>
+    )
+}
+
 PhotoList.propTypes = {
     photos: PropTypes.instanceOf(Immutable.List),
     hasMore: PropTypes.bool.isRequired,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.bool.isRequired
 };
 
 export default PhotoList;
@@ -66,4 +81,8 @@ function getClassName(props) {
 
 function loadFunc(page) {
     PhotoActions.getPhotos(page);
+}
+
+function tryAgain() {
+    PhotoActions.tryAgain();
 }
