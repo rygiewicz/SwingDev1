@@ -13,17 +13,19 @@ const PhotoActions = {
     getPhotos(page) {
         failedPage = null;
         dispatch(PhotoActionTypes.LOADING_STARTED);
-        fetchPhotos(page).then(this.photosReceived).catch(error => {
-            failedPage = page;
-            dispatch(PhotoActionTypes.LOADING_ERROR);
-            Logger.error(error);
-        });
+        fetchPhotos(page)
+            .then(updatePhotoInfo)
+            .then(this.photosReceived)
+            .catch(error => {
+                failedPage = page;
+                dispatch(PhotoActionTypes.LOADING_ERROR);
+                Logger.error(error);
+            });
     },
 
     photosReceived(photos) {
         failedPage = null;
         dispatch(PhotoActionTypes.PHOTOS_RECEIVED, {photos});
-        updatePhotoInfo(photos);
     },
 
     tryAgain() {
@@ -78,23 +80,31 @@ function getPhotoUrl(photo) {
 }
 
 function updatePhotoInfo(photoList) {
-    photoList.forEach(photo => {
-        fetchPhotoInfo(photo).then(info => {
-            dispatch(PhotoActionTypes.PHOTO_INFO_RECEIVED, {info})
-        }).catch(Logger.error);
-    });
+    return Promise.all(photoList.map(photo => {
+        return fetchPhotoInfo(photo);
+    })).then(arr => Immutable.List(arr));
 }
 
 function fetchPhotoInfo(photo) {
-    const infoUrl = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${API_KEY}`
-        + `&photo_id=${photo.id}&secret=${photo.secret}&format=json&nojsoncallback=1`;
+    return new Promise((resolve) => {
+        _fetchPhotoInfo(photo)
+            .then(resolve)
+            .catch(error => {
+                Logger.error(error);
+                resolve(photo.set('error', true));
+            });
+    });
+}
 
-    return axios.get(infoUrl).then(response => {
-        return {
-            id: photo.id,
-            date: new Date(parseInt(response.data.photo.dates.posted) * 1000),
-            author: response.data.photo.owner.username,
-            description: response.data.photo.description._content
-        };
+function _fetchPhotoInfo(photo) {
+    return Promise.resolve().then(() => {
+        const infoUrl = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${API_KEY}`
+            + `&photo_id=${photo.id}&secret=${photo.secret}&format=json&nojsoncallback=1`;
+
+        return axios.get(infoUrl).then(response => {
+            return photo.set('date', new Date(parseInt(response.data.photo.dates.posted) * 1000))
+                .set('author', response.data.photo.owner.username)
+                .set('description', response.data.photo.description._content);
+        });
     });
 }
