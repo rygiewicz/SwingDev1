@@ -20,6 +20,9 @@ class PhotoStore extends ReduceStore {
     reduce(state, action) {
         switch (action.type) {
 
+            case PhotoActionTypes.PHOTOS_LOADING:
+                return state.set('hasMore', false);
+
             case PhotoActionTypes.PHOTOS_RECEIVED:
                 return state.update('photos', photos => photos.concat(action.photos))
                     .set('hasMore', action.photos.count() === 100);
